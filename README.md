@@ -1,7 +1,7 @@
 ## Requirements
 
 ```
-git clone https://github.com/anarlavrenov/n1/master
+git clone https://github.com/anarlavrenov/n1
 ```
 
 Команди для завантаження моделі, вагів оптимізатора (для донавчання), та словника
