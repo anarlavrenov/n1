@@ -1,8 +1,21 @@
-## Requirements
+# N1
+
+![image](https://github.com/anarlavrenov/n1/assets/90818739/7bc4f5f7-dc7e-4c21-a1dd-56e34df0be92)
+
+N1 є українскьою трансформерною моделлю сумаризації українського тексту, розробленою [Анаром Лавреновим](www.linkedin.com/in/anar-lavrenov). N1 має на меті заохотити вітчизняних Дата Сайнтистів до розвитку українскього напряму ШІ. 
+
+Модель навчена на 32986 статтях з класного [датасету](https://huggingface.co/datasets/d0p3/ukr-pravda-news-summary) українських хлопців.
+
+Тести показали високу якість роботи N1 на тестових даних. 
+
+Окрім задачі сумаризації, дана модель, за допомогою блока енкодера, може надавати якісні ембединги для задач NLP на базі українскього тексту.
+
+## Використання
 
 ```
 git clone https://github.com/anarlavrenov/n1
 ```
+Весь необхідний код для інференсу моделі знаходиться в [inference.py](https://github.com/anarlavrenov/n1/edit/master/inference.py)
 
 Команди для завантаження моделі, вагів оптимізатора (для донавчання), та словника
 
@@ -13,7 +26,6 @@ gdown --no-check-certificate "https://drive.google.com/uc?export=download&id=1vU
 
 gdown --no-check-certificate "https://drive.google.com/uc?export=download&id=1-031D5om2D5oHYbSN60tqlYw1b5TQ4Zi" -O vocab.pth
 ```
-
 
 Дана модель побудована на базі архітектури трансформера: 
 
@@ -33,6 +45,3 @@ for param in model.parameters():
   if param.dim() > 1:
     torch.nn.init.xavier_uniform_(param)
 ```
-
-    
-Модель навчена на 32986 - статей з класного [датасету](https://huggingface.co/datasets/d0p3/ukr-pravda-news-summary) українських хлопців
