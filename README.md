@@ -58,7 +58,7 @@ dropout = 0.5
 
 ```
 
-Оптимізатор, який використовувався в процесі навчання [torch.optim.AdamW](https://pytorch.org/docs/stable/generated/torch.optim.AdamW.html)
+Оптимізатор, який використовувався в процесі навчання - [torch.optim.AdamW](https://pytorch.org/docs/stable/generated/torch.optim.AdamW.html)
 
 Ваги до моделі ініціалізовані росподілом Xavier 
 ```py
