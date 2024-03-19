@@ -149,7 +149,8 @@ def summarize(string: str, model: torch.nn.Module,
     start_token = [len(vocab)]
     end_token = [len(vocab) + 1]
 
-    string = torch.IntTensor([vocab(tokenizer(word))[0] for word in string.split()]).unsqueeze(0).to(device)
+    string = torch.IntTensor(
+        start_token + [vocab(tokenizer(word))[0] for word in string.split()] + end_token).unsqueeze(0).to(device)
     output = torch.IntTensor(start_token).unsqueeze(0).to(device)
 
     with torch.no_grad():
