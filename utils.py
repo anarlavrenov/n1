@@ -174,3 +174,40 @@ def summarize(string: str, model: torch.nn.Module,
             output = torch.cat([output, predicted_id.permute(1, 0)], dim=-1)
 
         return output.squeeze(0)
+
+
+def translate(string: str, model: torch.nn.Module, vocab_uk: torchtext.vocab.Vocab, vocab_en:torchtext.vocab.Vocab,
+              repetition_penalty: float = 1.2, maxlen_en: int = 13) -> torch.Tensor:
+    model.eval()
+
+    start_token_uk = [len(vocab_uk)]
+    end_token_uk = [len(vocab_uk) + 1]
+
+    start_token_en = [len(vocab_en)]
+    end_token_en = [len(vocab_en) + 1]
+
+    string = torch.IntTensor(start_token_uk + [vocab_uk(tokenizer(word))[0]
+                                               for word in string.split()] + end_token_uk).unsqueeze(0).to(device)
+    output = torch.IntTensor(start_token_en).unsqueeze(0).to(device)
+
+    with torch.no_grad():
+
+        for i in range(maxlen_en):
+
+            prediction = model(string.permute(1, 0), output.permute(1, 0))
+
+            prediction = prediction[-1:, :, :]
+
+            if i > 1:
+                # repetition penalty
+                for token_id in set(output.squeeze().tolist()):
+                    prediction[0, 0, token_id] /= repetition_penalty
+
+            predicted_id = torch.argmax(prediction, dim=-1)
+
+            if predicted_id[0] == end_token_en[0]:
+                return output.squeeze(0)
+
+            output = torch.cat([output, predicted_id.permute(1, 0)], dim=-1)
+
+        return output.squeeze(0)
