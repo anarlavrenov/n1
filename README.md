@@ -35,7 +35,7 @@ N1 є українскьою трансформерною кодовою арх�
 git clone https://github.com/anarlavrenov/n1
 ```
 
-Весь необхідний код для інференсу моделі знаходиться в [n1_inference.py](https://github.com/anarlavrenov/n1/edit/master/inference.py), код тренування моделі - в [n1_training.ipynb](https://github.com/anarlavrenov/n1/edit/master/n1_training.ipynb).<br><br>
+Весь необхідний код для інференсу моделі знаходиться в [n1_inference.py](https://github.com/anarlavrenov/n1/blob/main/summarization/n1_sum_inference.py), код тренування моделі - в [n1_training.ipynb](https://github.com/anarlavrenov/n1/edit/master/n1_training.ipynb).<br><br>
 
 
 ## Команди для завантаження моделі, вагів оптимізатора (для донавчання), та словника<br><br>
